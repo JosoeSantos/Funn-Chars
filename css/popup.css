@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.card-wraper {
+    border-top: 1px solid #444444;
+    border-left: 1px solid #444444;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
+    flex-wrap: wrap;
+}
+
+.card {
+    font-size: 17px;
+    padding: 5px 10px;
+    border-bottom: 1px solid #444444;
+    border-right: 1px solid #444444;
+}
+
+.card:hover {
+background-color: rgba(0,0,0,.05)}
+
+.center {
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    display: none;
+    width: 100vw;
+    line-height: 64px;
+    background-color: #212121;
+    color: white;
+    bottom: 0;
+    animation-name: ease-in;
+    animation-duration: 0.1s;
+    animation-timing-function: ease-in;
+}
+
+footer span {
+    margin: 0 15px;
+}
+
+.red-text {
+    color: #f44336;
+}
+
+.right {
+    float: right;
+}
+
+#dispensar-link {
+    cursor: pointer;
+}
+
+@keyframes ease-in {
+    0% {
+        bottom: -64px;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+.card:active {
+    background-color: #e0e0e0;
+}

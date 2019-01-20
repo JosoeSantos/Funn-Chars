@@ -1,0 +1,74 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: sans-serif;
+}
+
+main {
+    max-width: 1000px;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+form {
+
+}
+
+input{
+    border: none;
+    color:#444444;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: .5rem .5rem 0 .5rem;
+    background-color: rgba(72, 86, 156, 0.1);
+}
+
+input:focus{
+    background-color: rgba(72, 86, 156, .2);
+    transition: background-color 2s;
+    border-bottom:solid 1px darkblue;
+}
+
+.emojis {
+    display: flex;
+}
+
+.badge {
+    flex: 0 0 auto;
+    display: flex;
+    padding: 4px;
+    margin: 3px;
+    font-size: 16px;
+    font-family: sans-serif;
+    align-items: center;
+    background-color: #54f555;
+    border: 3px solid #24b524;
+    border-radius: 4px;
+    width: auto;
+}
+
+.badge span {
+    margin: 3px;
+}
+
+.badge button {
+    color: black;
+    margin: 2px;
+    background-color: #29afd1;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+}
+.badge button:hover{
+    box-shadow:  0 0 1px 4px rgba(0,0,0,.1);
+    transition: box-shadow .2s;
+}
+
+.badge button:active{
+    opacity: 0;
+    background-color: #29afd1 ;
+    transition: opacity .2s;
+}
