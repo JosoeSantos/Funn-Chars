@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
+
 * {
     box-sizing: border-box;
 }
@@ -12,26 +13,55 @@ body {
 
 main {
     flex: 1 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.card-wraper {
-    border-top: 1px solid #444444;
-    border-left: 1px solid #444444;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
-    flex-wrap: wrap;
+main h4 {
+    width: 100%;
+}
+
+.open-config {
+    background-color: #54daff;
+    border-radius: 5px;
+    padding: .5rem;
+    box-shadow: 0 3px 0 0 #29afd1;
+}
+
+.open-config:hover {
+    cursor: pointer;
+    background-color: #68eeff;
+}
+
+.open-config:active {
+    box-shadow: none;
+}
+
+#card-wraper {
+    min-width: 100%;
+    padding: 1rem;
 }
 
 .card {
     font-size: 17px;
     padding: 5px 10px;
-    border-bottom: 1px solid #444444;
-    border-right: 1px solid #444444;
+    background-color: #54f555;
+    border: 3px solid #24b524;
+    border-radius: 4px;
+    margin: .5rem;
 }
 
 .card:hover {
-background-color: rgba(0,0,0,.05)}
+    box-shadow: 0 0 2px 4px rgba(0, 0, 0, .1);
+    transition: box-shadow .2s;
+}
+
+.card:active {
+    outline: none;
+    transform: scale(.9);
+    transition: transform .1s;
+}
 
 .center {
     text-align: center;
@@ -75,6 +105,3 @@ footer span {
     }
 }
 
-.card:active {
-    background-color: #e0e0e0;
-}

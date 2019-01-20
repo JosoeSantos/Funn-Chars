@@ -54,20 +54,31 @@ function countUse(text) {
 
 function draw() {
     browser.storage.local.get().then((data) => {
-        if (data.emojis && data.emojis.length > 0) {
-            document.getElementById('card-wraper').innerHTML = '';
-            drawEmojis(data.emojis);
-        } else {
-            document.getElementById('card-wraper').innerHTML = 'Sem emojis. Vá para as configuraçoes para adicionar mais';
+            if (data.emojis && data.emojis.length > 0) {
+                document.getElementById('card-wraper').innerHTML = '';
+                drawEmojis(data.emojis);
+            } else {
+                document.getElementById('card-wraper').innerHTML = 'Sem emojis. Vá para as <a class="open-config">configuraçoes</a> para adicionar mais';
+
+            }
+            let bts = document.getElementsByClassName('open-config');
+            for (let i = 0; i < bts.length; i++) {
+                bts[i].addEventListener("click", () => {
+                    browser.runtime.openOptionsPage();
+                });
+            }
         }
-    }).catch(err => console.error(err));
+    ).catch(err => console.error(err));
 }
 
 function init() {
     draw();
     browser.storage.onChanged.addListener((changes, areaName) => {
         draw()
-    });
+    });/*
+    document.addEventListener("click", (event)=>{
+       if(event.target.className === 'open-config')
+    });*/
 }
 
 init();

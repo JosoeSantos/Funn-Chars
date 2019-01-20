@@ -17,16 +17,17 @@
     "default_panel": "popup-action.html",
     "browser_style": false
   },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
   "content_scripts": [
     {
       "matches": [
         "*://*/"
       ],
-      "js": [
-        "background.js",
-        "js/options.js",
-        "js/sidebar.js"
-      ]
+      "js": []
     }
   ],
   "options_ui": {
@@ -46,6 +47,7 @@
   "permissions": [
     "*://*/",
     "clipboardWrite",
+    "clipboardRead",
     "storage"
   ]
 }

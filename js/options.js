@@ -4,6 +4,12 @@ let defaltEmoji = [
         usages: 0,
         visible: true,
         insertedAt: Date.now()
+    },
+    {
+        text: "¯\\_(ツ)_/¯",
+        usages: 0,
+        visible: true,
+        insertedAt: Date.now()
     }
 ];
 
@@ -74,6 +80,7 @@ function toggleVisibility(target) {
 }
 
 document.addEventListener('click', (event) => {
+    console.log('click');
     if (event.target.className === 'bt-submit') {
         addEmoji()
     } else if (event.target.className === 'bt-delete-emoji') {
