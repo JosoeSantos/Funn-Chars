@@ -1,5 +1,27 @@
-function init() {
+let defaltEmoji = [
+    {
+        text: "( ͡° ͜ʖ ͡°)",
+        usages: 0,
+        visible: true,
+        insertedAt: Date.now()
+    },
+    {
+        text: "¯\\_(ツ)_/¯",
+        usages: 0,
+        visible: true,
+        insertedAt: Date.now()
+    }
+];
 
+runtime.onInstalled.addListener(() => {
+    browser.storage.local.get().then(data => {
+        if (!data.emojis) {
+            browser.storage.local.set({emojis: defaltEmoji})
+        }
+    });
+});
+
+function init() {
     browser.commands.onCommand.addListener(command => {
         if (command === "toggle-sidebar") {
             browser.sidebarAction.isOpen({}).then(result => {

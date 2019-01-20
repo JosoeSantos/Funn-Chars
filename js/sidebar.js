@@ -24,6 +24,7 @@ function drawEmojis(data) {
                 e = evt.target;
             }
             let text = e.innerText;
+            countUse(text);
             var range = document.createRange();
             range.selectNode(e);
             var s = window.getSelection();
