@@ -72,3 +72,9 @@ input:focus{
     background-color: #29afd1 ;
     transition: opacity .2s;
 }
+
+.badge.invisible{
+    background-color: #ff7271;
+    border: 3px solid #ff3c3a;
+
+}

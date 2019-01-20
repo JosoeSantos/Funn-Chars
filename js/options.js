@@ -7,29 +7,6 @@ let defaltEmoji = [
     }
 ];
 
-if (!Array.prototype.find) {
-    Array.prototype.find = function (predicate) {
-        if (this === null) {
-            throw new TypeError('Array.prototype.find called on null or undefined');
-        }
-        if (typeof predicate !== 'function') {
-            throw new TypeError('predicate must be a function');
-        }
-        var list = Object(this);
-        var length = list.length >>> 0;
-        var thisArg = arguments[1];
-        var value;
-
-        for (var i = 0; i < length; i++) {
-            value = list[i];
-            if (predicate.call(thisArg, value, i, list)) {
-                return value;
-            }
-        }
-        return undefined;
-    };
-}
-
 function onGot(item) {
     console.log("catch");
     console.log(item);
@@ -46,27 +23,23 @@ function deleteEmoji(target) {
     let text = target.parentElement.childNodes[0].innerText;
     console.log(text);
     browser.storage.local.get().then((data) => {
-        console.log(data);
         let novoArray = [];
         for (let i = 0; i < data.emojis.length; i++) {
-            console.log(data.emojis[i]);
             if (data.emojis[i].text === text) continue;
+            else console.log(data.emojis[i]);
             novoArray.push(data.emojis[i])
         }
+        console.log(novoArray);
         browser.storage.local.set({emojis: novoArray}).then(onGot, onError);
     }).catch(onError);
 }
 
 function addEmoji() {
     let text = document.getElementById('in-entry').value;
-    console.log(text);
+    text = text.trim();
     browser.storage.local.get().then((data) => {
-        console.log('sla:');
         let emojis = data.emojis;
-        console.log(emojis);
         for (let i = 0; i < emojis.length; i++) {
-            console.log(emojis[i]);
-            console.log(text);
             if (emojis[i].text === text) return false;
         }
         if (text !== "" && text !== null && text !== undefined) {
@@ -78,36 +51,47 @@ function addEmoji() {
                     insertedAt: Date.now()
                 };
             data.emojis.push(emoji);
-            browser.storage.local.set(data).then(onGot, onError);
+            browser.storage.local.set(data).then(() => {
+                document.getElementById('in-entry').value = '';
+                onGot();
+            }, onError);
         }
 
     });
 }
 
-function toggleVisibility(){
+function toggleVisibility(target) {
+    let text = target.childNodes[0].innerText;
+    console.log(text);
+    browser.storage.local.get().then(data => {
+        for (let i = 0; i < data.emojis.length; i++) {
+            if (data.emojis[i].text === text)
+                data.emojis[i].visible = !data.emojis[i].visible;
+        }
+        console.log(data);
+        browser.storage.local.set(data).then(onGot, onError);
+    }).catch(onError);
 }
 
 document.addEventListener('click', (event) => {
     if (event.target.className === 'bt-submit') {
-        console.log('add emoji');
         addEmoji()
     } else if (event.target.className === 'bt-delete-emoji') {
-        console.log('remove-emoji');
         deleteEmoji(event.target)
     } else if (event.target.className === 'badge') {
-        console.log('toggle invisible badge')
+        toggleVisibility(event.target);
     } else if (event.target.className === 'badge-text') {
-        console.log('toggle invisible badge')
+        toggleVisibility(event.target.parentElement);
     }
 });
 
 function drawEmoji(data) {
     document.getElementById('emoji-list').innerHTML = '';
     for (let i = 0; i < data.length; i++) {
-        document.getElementById('emoji-list').innerHTML += `<div class="badge" data-text="${data[i].text}"><span>${data[i].text}</span class="badge-text"><button class="bt-delete-emoji"><i class="material-icons">delete</i></button>`;
+        let v = data[i].visible ? '' : ' invisible';
+        document.getElementById('emoji-list').innerHTML += `<div class="badge${v}" data-text="${data[i].text}"><span>${data[i].text}</span class="badge-text"><button class="bt-delete-emoji"><i class="material-icons">delete</i></button>`;
     }
 }
-
 
 
 function getData() {
