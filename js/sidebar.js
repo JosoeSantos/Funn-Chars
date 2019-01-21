@@ -41,9 +41,9 @@ function drawEmojis(data) {
 
 function countUse(text) {
     browser.storage.local.get().then((data) => {
-            for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.emojis.length; i++) {
                 if (data.emojis[i].text === text) {
-                    data.emojis[i].usages++;
+                    data.emojis[i].usages = data.emojis[i].usages + 1;
                     break;
                 }
             }
@@ -58,7 +58,7 @@ function draw() {
                 document.getElementById('card-wraper').innerHTML = '';
                 drawEmojis(data.emojis);
             } else {
-                document.getElementById('card-wraper').innerHTML = 'Sem emojis. Vá para as <a class="open-config">configuraçoes</a> para adicionar mais';
+                document.getElementById('card-wraper').innerHTML = 'Sem emoticons.';
 
             }
             let bts = document.getElementsByClassName('open-config');
@@ -75,7 +75,8 @@ function init() {
     draw();
     browser.storage.onChanged.addListener((changes, areaName) => {
         draw()
-    });/*
+    });
+    /*
     document.addEventListener("click", (event)=>{
        if(event.target.className === 'open-config')
     });*/

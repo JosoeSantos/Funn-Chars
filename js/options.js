@@ -1,3 +1,4 @@
+/*
 let defaltEmoji = [
     {
         text: "( ͡° ͜ʖ ͡°)",
@@ -10,8 +11,34 @@ let defaltEmoji = [
         usages: 0,
         visible: true,
         insertedAt: Date.now()
+    },
+    {
+        text: "ಠ_ಠ",
+        usages: 0,
+        visible: true,
+        insertedAt: Date.now()
+    },
+    {
+        text: "ʕ•ᴥ•ʔ",
+        usages: 0,
+        visible: true,
+        insertedAt: Date.now()
+    },
+    {
+        text: "(▀̿Ĺ̯▀̿ ̿)",
+        usages: 0,
+        visible: true,
+        insertedAt: Date.now()
+    },
+    {
+        text: "(ʘ‿ʘ)",
+        usages: 0,
+        visible: true,
+        insertedAt: Date.now()
     }
 ];
+*/
+
 
 function onGot(item) {
     console.log("catch");
@@ -85,10 +112,17 @@ document.addEventListener('click', (event) => {
         addEmoji()
     } else if (event.target.className === 'bt-delete-emoji') {
         deleteEmoji(event.target)
-    } else if (event.target.className === 'badge') {
-        toggleVisibility(event.target);
-    } else if (event.target.className === 'badge-text') {
+    } else if (event.target.className.match(/badge-text/)) {
         toggleVisibility(event.target.parentElement);
+    } else if (event.target.className.match(/badge/)) {
+        toggleVisibility(event.target);
+    } else if (event.target.id === 'in-entry') {
+        event.target.addEventListener("click", () => {
+            navigator.clipboard.readText().then(clipText => {
+                document.getElementById('in-entry').value = clipText;
+                event.target.select();
+            });
+        });
     }
 });
 
@@ -96,7 +130,7 @@ function drawEmoji(data) {
     document.getElementById('emoji-list').innerHTML = '';
     for (let i = 0; i < data.length; i++) {
         let v = data[i].visible ? '' : ' invisible';
-        document.getElementById('emoji-list').innerHTML += `<div class="badge${v}" data-text="${data[i].text}"><span class="badge-text">${data[i].text}</span><button class="bt-delete-emoji"><i class="material-icons">delete</i></button>`;
+        document.getElementById('emoji-list').innerHTML += `<div class="badge ${v}" data-text="${data[i].text}"><span class="badge-text">${data[i].text}</span><button class="bt-delete-emoji"><i class="material-icons">delete</i></button>`;
     }
 }
 
@@ -121,6 +155,12 @@ function init() {
     browser.storage.onChanged.addListener((changes, areaName) => {
         getData()
     });
+    document.getElementById('form-add-emoji').addEventListener("submit", (event) => {
+        event.preventDefault();
+        console.log('submit');
+        return false;
+    }, false);
+
 }
 
 init();

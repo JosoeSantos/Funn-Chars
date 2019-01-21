@@ -7,7 +7,7 @@
 body {
     display: flex;
     flex-direction: column;
-    margin: 0;
+    margin: 0 0 2rem;
     font-family: 'Lato', sans-serif;
 }
 
@@ -22,21 +22,30 @@ main h4 {
     width: 100%;
 }
 
-.open-config {
+button.open-config {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+button {
+    color: black;
+    border: none;
     background-color: #54daff;
     border-radius: 5px;
     padding: .5rem;
     box-shadow: 0 3px 0 0 #29afd1;
 }
 
-.open-config:hover {
+button:hover {
     cursor: pointer;
     background-color: #68eeff;
 }
 
-.open-config:active {
+button:active {
+    outline: none;
     box-shadow: none;
 }
+
 
 #card-wraper {
     min-width: 100%;

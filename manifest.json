@@ -1,10 +1,16 @@
 {
   "manifest_version": 2,
   "name": "FUnn chars",
-  "version": "1.1",
-  "description": "Mostra um pop up com varias opções de emojis com caracteres",
+  "version": "1.1.1-b1",
+  "description": "Adiciona ao firefox listas de emoticons para copiar e colar",
   "icons": {
     "48": "imgs/ic_app_48.gif"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "funn-chars@josoe.cf",
+      "strict_min_version": "57.0"
+    }
   },
   "browser_action": {
     "default_icon": "imgs/ic_app_48.gif",
@@ -27,7 +33,9 @@
       "matches": [
         "*://*/"
       ],
-      "js": []
+      "js": [
+        "js/options.js"
+      ]
     }
   ],
   "options_ui": {
