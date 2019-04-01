@@ -1,4 +1,3 @@
-
 function onGot(item) {
     getData()
 }
@@ -82,7 +81,14 @@ function drawEmoji(data) {
     document.getElementById('emoji-list').innerHTML = '';
     for (let i = 0; i < data.length; i++) {
         let v = data[i].visible ? '' : ' invisible';
-        document.getElementById('emoji-list').innerHTML += `<div class="badge ${v}" data-text="${data[i].text}"><span class="badge-text">${data[i].text}</span><button class="bt-delete-emoji"><i class="material-icons">delete</i></button>`;
+        document.getElementById('emoji-list').innerHTML += 
+        `<div class="badge ${v}" data-text="${data[i].text}">
+            <span class="badge-text">
+                ${data[i].text}</span>
+            <button class="bt-delete-emoji">
+                <i class="material-icons">delete</i>
+            </button>
+        </div>`;
     }
 }
 
