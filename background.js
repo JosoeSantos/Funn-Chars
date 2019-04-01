@@ -38,7 +38,6 @@ let defaltEmoji = [
 ];
 
 browser.runtime.onInstalled.addListener((e) => {
-    console.log('instalando...');
     browser.storage.local.get().then(data => {
         if (!data.emojis) {
             browser.storage.local.set({emojis: defaltEmoji}).then(browser.runtime.openOptionsPage())

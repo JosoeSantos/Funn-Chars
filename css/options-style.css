@@ -59,6 +59,7 @@ button:active {
 
 .emojis {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .badge {

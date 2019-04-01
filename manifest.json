@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
   "name": "FUnn chars",
-  "version": "1.1.1-b1",
+  "version": "1.1.11",
   "description": "Adiciona ao firefox listas de emoticons para copiar e colar",
   "icons": {
     "48": "imgs/ic_app_48.gif"
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "funn-chars@josoe.cf",
+      "id": "{69c64e13-ee4e-4668-9633-59c20bdf6b14}",
       "strict_min_version": "57.0"
     }
   },

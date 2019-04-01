@@ -1,10 +1,8 @@
 function onGot(item) {
-    console.log("catch");
     console.log(item);
 }
 
 function onError(error) {
-    console.log("error");
     console.log(error)
 }
 

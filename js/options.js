@@ -1,58 +1,13 @@
-/*
-let defaltEmoji = [
-    {
-        text: "( ͡° ͜ʖ ͡°)",
-        usages: 0,
-        visible: true,
-        insertedAt: Date.now()
-    },
-    {
-        text: "¯\\_(ツ)_/¯",
-        usages: 0,
-        visible: true,
-        insertedAt: Date.now()
-    },
-    {
-        text: "ಠ_ಠ",
-        usages: 0,
-        visible: true,
-        insertedAt: Date.now()
-    },
-    {
-        text: "ʕ•ᴥ•ʔ",
-        usages: 0,
-        visible: true,
-        insertedAt: Date.now()
-    },
-    {
-        text: "(▀̿Ĺ̯▀̿ ̿)",
-        usages: 0,
-        visible: true,
-        insertedAt: Date.now()
-    },
-    {
-        text: "(ʘ‿ʘ)",
-        usages: 0,
-        visible: true,
-        insertedAt: Date.now()
-    }
-];
-*/
-
 
 function onGot(item) {
-    console.log("catch");
-    console.log(item);
     getData()
 }
 
 function onError(error) {
-    console.log("error");
     console.log(error)
 }
 
 function deleteEmoji(target) {
-    console.log("%cdelete", 'color:blue; background-color:#212141');
     let text = target.parentElement.childNodes[0].innerText;
     console.log(text);
     browser.storage.local.get().then((data) => {
@@ -95,19 +50,16 @@ function addEmoji() {
 
 function toggleVisibility(target) {
     let text = target.childNodes[0].innerText;
-    console.log(text);
     browser.storage.local.get().then(data => {
         for (let i = 0; i < data.emojis.length; i++) {
             if (data.emojis[i].text === text)
                 data.emojis[i].visible = !data.emojis[i].visible;
         }
-        console.log(data);
         browser.storage.local.set(data).then(onGot, onError);
     }).catch(onError);
 }
 
 document.addEventListener('click', (event) => {
-    console.log('click');
     if (event.target.className === 'bt-submit') {
         addEmoji()
     } else if (event.target.className === 'bt-delete-emoji') {
@@ -157,11 +109,9 @@ function init() {
     });
     document.getElementById('form-add-emoji').addEventListener("submit", (event) => {
         event.preventDefault();
-        console.log('submit');
         return false;
     }, false);
 
 }
 
 init();
-console.log("init");
