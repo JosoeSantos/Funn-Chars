@@ -1,0 +1,25 @@
+{
+  "name": "funn-chars",
+  "version": "1.1.11",
+  "description": "An web extension to organize emoticons for copy and pasting.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "web-ext run -f=firefox-developer-edition"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosoeSantos/Funn-Chars.git"
+  },
+  "keywords": [
+    "emoticons",
+    "web-extension",
+    "firefox"
+  ],
+  "author": "jssantosqueiroz@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JosoeSantos/Funn-Chars/issues"
+  },
+  "homepage": "https://github.com/JosoeSantos/Funn-Chars#readme"
+}
